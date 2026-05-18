@@ -13,7 +13,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const { loginCurrentUser } = useAuth();
-    //   const currentUser = useSelector((state) =>  state.auth.user);
+    // const currentUser = useSelector((state) => state.auth.user);
 
 
     const formik = useFormik({
@@ -25,7 +25,17 @@ const Login = () => {
         validationSchema: validateLogin,
         onSubmit: async values => {
             await loginCurrentUser({ email: values.email, role: values.role, password: values.password });
+            // navigate('/')
+            useSelector((state) => console.log(state.auth.user));
             //   console.log(currentUser);
+
+            // if (!currentUser) {
+            //     toast.info('User Login SuccessFully')
+            //     navigate('/')
+            // }
+            // else {
+            //     toast.info('Invalid Credentials')
+            // }
         }
     })
 
