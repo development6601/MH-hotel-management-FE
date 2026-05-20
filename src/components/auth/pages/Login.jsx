@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
-import { validateLogin } from "../../utils/validate"
+import { validateLogin } from "../../../utils/validate"
 import { useAuth } from "../hook/useAuth"
 import { useSelector } from "react-redux"
 
@@ -102,3 +102,5 @@ const Login = () => {
 }
 
 export default Login
+
+

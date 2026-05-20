@@ -1,7 +1,7 @@
 import "./style/register.scss"
 import { useFormik } from 'formik';
 import React from 'react'
-import { validateRegister } from '../../utils/validate';
+import { validateRegister } from '../../../utils/validate';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
