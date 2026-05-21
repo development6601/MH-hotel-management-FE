@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { setUser, setLoading, setError } from "../../../store/Slices/authSlice.js"
-import { login, register } from "../../../services/auth.api.js";
+import { getMe, login, register } from "../../../services/auth.api.js";
 
 export const useAuth = () => {
 
@@ -37,7 +37,22 @@ export const useAuth = () => {
         }
     }
 
+    const fetchUserData = async () => {
+        try {
+            dispatch(setLoading(false))
+            
+            const data = await getMe();
+            
+            dispatch(setUser(data.user));
+            console.log(data.user);
+
+        } catch (error) {
+            console.log(error.response?.data?.message || "Fetching User Fail");
+            return error.response?.data?.message || "Fetching User Fail";
+        }
+    }
+
     return {
-        loginCurrentUser, registerUser
+        loginCurrentUser, registerUser, fetchUserData
     }
 }

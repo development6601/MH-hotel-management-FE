@@ -24,3 +24,10 @@ export const register = async ({ name, email, password, role, phone, ProfilePic 
     const response = await api.post('/register', formData);
     return response.data;
 }
+
+export const getMe = async () => {
+    const response = axios.get('/get-me');
+    console.log(response);
+    
+    return response.data;
+}
