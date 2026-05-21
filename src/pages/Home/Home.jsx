@@ -14,7 +14,6 @@ const Home = () => {
           <div className="btn">
             <Link className='menu' to={"/home"}>Book Now</Link>
             <Link className='menu' to={"/home"}>About Us</Link>
-
           </div>
         </div>
         <div className="right">

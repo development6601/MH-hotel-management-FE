@@ -12,5 +12,4 @@ export const login = async ({ email, role, password }) => {
     // console.log(response.data.user);
     
     return response.data;
-
 }

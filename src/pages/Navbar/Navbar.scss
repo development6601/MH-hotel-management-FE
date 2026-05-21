@@ -28,14 +28,24 @@
                 font-family: AL;
                 font-size: 1.4rem;
                 border: none;
-            }
-
-            .menu:hover {
                 padding: 0;
-                padding-bottom: 2px;
-                border-bottom: 1.5px solid var(--primary-color);
-            }
+                position: relative;
 
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 0%;
+                    height: 5%;
+                    left: 0;
+                    bottom: -5px;
+                    background-color: var(--secondary-bg-color);
+                    transition: 0.4s;
+                }
+
+                &:hover::after {
+                    width: 100%;
+                }
+            }
         }
 
         .btn {
@@ -44,6 +54,7 @@
             color: var(--primary-color);
             font-size: 1.4rem;
             cursor: pointer;
+            background-color: var(--primary-bg-color);
         }
 
         .btn:hover {

@@ -12,12 +12,14 @@ export const useAuth = () => {
             dispatch(setLoading(false))
             
             const data = await login({ email, role, password });
-            // console.log(data.user);
             
             dispatch(setUser(data.user));
+            console.log(data.user);
+            
 
         } catch (error) {
             dispatch(setError(error.response?.data?.message || "Login failed"));
+            console.log(error.response?.data?.message || "Login failed");
         }
         finally {
             dispatch(setLoading(false));
