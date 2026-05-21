@@ -1,4 +1,4 @@
-.LoginPage {
+.RegisterPage {
     width: 100%;
     height: 95vh;
     display: flex;
@@ -6,6 +6,7 @@
     justify-content: center;
     padding: 0;
     padding-top: 5rem;
+    // background-color: aqua;
 
     .content {
         width: 80%;
@@ -22,6 +23,10 @@
             justify-content: space-between;
             padding: 30px 10px;
             background-color: var(--secondary-bg-color);
+            background-image: url(../../../../assets/photo-1662499106618-361dbca95a3d.avif);
+            background-position: center;
+            background-size: cover;
+            border-radius: 30px;
 
             h4 {
                 font-family: RM;
@@ -52,7 +57,7 @@
         }
 
         .right-part {
-            width: 50%;
+            width: 60%;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -129,23 +134,84 @@
                             padding-left: 10px;
                         }
 
-                        .forgotPassword{
-                            margin-top: 10px;
+                        .errorDiv {
+                            font-family: AL;
+                            color: red;
+                            // color: var(--secondary-color);
                             background-color: transparent;
-                            padding: 0;
+                        }
+                    }
 
-                            .forgotPasswordLink {
-                                background-color: transparent;
+                    .selectField{
+                        padding: 200px;
+                    }
+
+                    .fileinputBlock {
+                        display: none;
+                    }
+                }
+
+                .MultipleInputContent {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+
+                    .mobileInput {
+                        width: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: center;
+                        background-color: transparent;
+                        padding: 0;
+
+
+                        label {
+                            font-family: AL;
+                            font-size: 1.4rem;
+                            color: var(--secondary-color);
+                            background-color: transparent;
+                        }
+
+                        .inputBlock {
+                            width: 100%;
+                            background-color: transparent;
+
+                            input {
+                                width: 80%;
                                 font-family: AL;
+                                font-size: 1.4rem;
+                                background-color: transparent;
                                 color: var(--secondary-color);
-                                text-decoration: none;
+                                border: none;
+                                border-bottom: 1px solid var(--secondary-color);
+                                border-radius: 10px;
+                                outline: none;
+                                padding: 2px;
+                                padding-left: 10px;
                             }
+
+                            .errorDiv {
+                                font-family: AL;
+                                color: red;
+                                background-color: transparent;
+                            }
+                        }
+                    }
+
+                    .fileInput {
+
+                        .FileInputButton {
+                            padding: 1.5rem 0.5rem;
+                            font-family: AL;
+                            font-size: 1.3rem;
+                            text-align: center;
+                            align-items: center;
                         }
 
                         .errorDiv {
                             font-family: AL;
                             color: red;
-                            // color: var(--secondary-color);
                             background-color: transparent;
                         }
                     }
@@ -196,5 +262,20 @@
 
     .tost {
         background-color: transparent;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .RegisterPage {
+        .content {
+            .left-part {
+                width: 30%;
+            }
+
+            .right-part {
+                width: 70%;
+            }
+        }
     }
 }

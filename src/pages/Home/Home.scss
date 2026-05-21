@@ -11,13 +11,15 @@
         display: flex;
 
         .left {
-            width: 55%;
-            padding-left: 3vw;
+            width: 50%;
+            // padding-left: 3vw;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             gap: 1rem;
+            padding: 50px 20px;
             background-color: var(--secondary-bg-color);
+            // background-color: #34201F;
 
             .textContent {
                 width: 100%;
@@ -27,7 +29,7 @@
                 background-color: transparent;
 
                 h4 {
-                    font-family: RM;
+                    font-family: ASB;
                     color: var(--secondary-color);
                     font-size: 5.5vh;
                     line-height: 0.8;
@@ -36,38 +38,71 @@
                 }
             }
 
-            .btn {
+            .bottomContent {
                 display: flex;
-                gap: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
                 background-color: transparent;
-                padding-left: 1.5rem;
+                // padding-left: 1.5rem;
 
-                .menu {
-                    text-decoration: none;
-                    cursor: pointer;
-                    font-family: AL;
-                    border: none;
-                    border-radius: 10px;
-                    padding: 0.5rem 1.5rem;
-                    font-family: AR;
-                    color: var(--primary-color);
-                    font-size: 1.2rem;
-                    cursor: pointer;
-                    background-color: var(--primary-bg-color);
+
+                .content {
+
+                    p {
+                        font-family: AL;
+                        color: var(--secondary-color);
+                        font-size: 1.5rem;
+                        line-height: 0.9;
+                        word-spacing: -1px;
+                        padding: 0;
+                        background-color: transparent;
+                    }
+
                 }
-                .menu:hover {
-                    scale: 0.99;
-                    background-color: var(--fourth-bg-color);
-                    color: var(--secondary-color);
+
+                .btns {
+                    display: flex;
+                    gap: 1rem;
+                    .menu {
+                        text-decoration: none;
+                        cursor: pointer;
+                        font-family: AL;
+                        border: none;
+                        border-radius: 10px;
+                        padding: 0.5rem 1.5rem;
+                        font-family: AR;
+                        color: var(--primary-color);
+                        font-size: 1.2rem;
+                        cursor: pointer;
+                        background-color: var(--primary-bg-color);
+                    }
+
+                    .menu:hover {
+                        scale: 0.99;
+                        background-color: var(--fourth-bg-color);
+                        color: var(--secondary-color);
+                    }
                 }
+
+
             }
         }
 
         .right {
-            width: 45%;
-            background-image: url(../../assets/premium_photo-1733353323840-cefa39cced34.avif);
+            position: relative;
+            width: 50%;
+            background-image: url(../../assets/premium_photo-1723489679424-938636b6b9bb.avif);
             background-size: cover;
             background-position: center;
+
+            .Square {
+                width: 60px;
+                height: 60px;
+                background-color: var(--secondary-bg-color);
+                position: absolute;
+                right: 0%;
+                bottom: 0%;
+            }
         }
     }
 }

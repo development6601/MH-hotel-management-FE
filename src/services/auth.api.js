@@ -5,11 +5,22 @@ const api = axios.create({
     withCredentials: true
 });
 
-export const login = async ({ email, role, password }) => {
-    
-    const response = await api.post('/login', { email, role, password });
-    
-    // console.log(response.data.user);
-    
+export const login = async ({ email, password }) => {
+    const response = await api.post('/login', { email, password });
+    return response.data;
+}
+
+export const register = async ({ name, email, password, role, phone, ProfilePic }) => {
+
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("role", role);
+    formData.append("phone", phone);
+    formData.append("PROPIC", ProfilePic);
+
+    const response = await api.post('/register', formData);
     return response.data;
 }
