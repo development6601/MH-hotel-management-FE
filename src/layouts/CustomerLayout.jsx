@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
+import Navbar from '../pages/public/Navbar/Navbar'
+import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import Navbar from './pages/public/Navbar/Navbar';
-import { Outlet } from 'react-router-dom';
-import { useAuth } from './components/auth/hook/useAuth';
+import { useAuth } from '../components/auth/hook/useAuth';
 
-const App = () => {
+const CustomerLayout = () => {
 
   const currentUser = useSelector((state) => state.auth.user);
 
@@ -19,12 +19,11 @@ const App = () => {
   }, [currentUser]);
 
   return (
-    <div>
-      {/* <Navbar />
-      <Outlet /> */}
-      {currentUser}
-    </div>
+    <>
+      <Navbar />
+      <Outlet />
+    </>
   )
 }
 
-export default App
+export default CustomerLayout

@@ -26,8 +26,11 @@ export const register = async ({ name, email, password, role, phone, ProfilePic 
 }
 
 export const getMe = async () => {
-    const response = axios.get('/get-me');
-    console.log(response);
-    
+    const response = await api.get('/get-me');    
+    return response.data;
+}
+
+export const logout = async () => {
+    const response = await api.get('/logout');    
     return response.data;
 }
