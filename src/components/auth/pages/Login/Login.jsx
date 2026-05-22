@@ -4,14 +4,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import { validateLogin } from "../../../../utils/validate"
-import { useAuth } from "../../hook/useAuth"
 import { useSelector } from "react-redux"
+import { authActions } from "../../../../store/authReducer/authActions.js"
 
 const Login = () => {
 
     const navigate = useNavigate();
 
-    const { loginCurrentUser } = useAuth();
+    const { loginCurrentUser } = authActions();
     const currentUser = useSelector((state) => state.auth.user);
     const error = useSelector((state) => state.auth.error);
 
@@ -20,7 +20,7 @@ const Login = () => {
             toast.success('User Login SuccessFully');
             navigate("/");
         }
-        else {
+        if (error) {
             toast.error(error)
         }
     }, [currentUser, error])
@@ -33,6 +33,9 @@ const Login = () => {
         validationSchema: validateLogin,
         onSubmit: async values => {
             await loginCurrentUser({ email: values.email, password: values.password });
+            if (error) {
+                toast.error(error)
+            }
         }
     })
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hook/useAuth';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { validateRegister } from '../../../../utils/validate';
 import { ToastContainer, toast } from 'react-toastify'
 import "../Register/register.scss"
 import { Button, ConfigProvider, Flex } from 'antd';
+import { authActions } from '../../../../store/authReducer/authActions';
 // import { useResponsive } from 'antd-style';
 
 const Register = () => {
@@ -14,7 +14,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const fileInputRef = useRef();
-  const { registerUser } = useAuth();
+  const { registerUser } = authActions();
 
   const formik = useFormik({
     initialValues: {

@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import Navbar from '../pages/public/Navbar/Navbar'
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import { useAuth } from '../components/auth/hook/useAuth';
+import { authActions } from '../store/authReducer/authActions';
 
 const CustomerLayout = () => {
 
   const currentUser = useSelector((state) => state.auth.user);
 
-  const { fetchUserData } = useAuth();
+  const { fetchUserData } = authActions();
 
   useEffect(() => {
     fetchUserData();

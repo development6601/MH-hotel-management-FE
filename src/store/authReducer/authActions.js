@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
-import { setUser, setLoading, setError } from "../../../store/Slices/authSlice.js"
-import { getMe, login, logout, register } from "../../../services/auth.api.js";
+import { setUser, setLoading, setError } from "../authReducer/authSlice.js"
+import { getMe, login, logout, register } from "../../services/auth.api.js";
 
-export const useAuth = () => {
+export const authActions = () => {
 
     const dispatch = useDispatch();
 

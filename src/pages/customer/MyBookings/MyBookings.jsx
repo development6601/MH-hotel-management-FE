@@ -1,8 +1,14 @@
 import React from 'react'
+import '../MyBookings/MyBookings.scss'
 
 const MyBookings = () => {
   return (
-    <div style={{paddingTop: "10rem"}}>MyBookings</div>
+    <div className='MyBookings'>
+      <div className="textContent">
+        <h2>MyBookings</h2>
+      </div>
+      <div className="bookingCards"></div>
+    </div>
   )
 }
 

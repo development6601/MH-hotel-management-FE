@@ -2,13 +2,13 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./Navbar.scss"
 import { useSelector } from 'react-redux';
-import { useAuth } from '../../../components/auth/hook/useAuth';
+import { authActions } from '../../../store/authReducer/authActions';
 
 const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const { logoutUser } = useAuth();
+  const { logoutUser } = authActions();
   const user = useSelector((state) => state.auth.user);
 
   const handleLogout = () => {
