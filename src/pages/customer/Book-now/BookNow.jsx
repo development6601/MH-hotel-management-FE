@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import "../Book-now/BookNow.scss";
 import { DatePicker, Space, theme } from 'antd';
 import { roomActions } from "../../../store/roomReducer/roomActions";
+import { useSelector } from "react-redux";
 
 const { RangePicker } = DatePicker;
 
 const BookNow = () => {
 
   const { availableRooms } = roomActions();
+
+  const rooms = useSelector(state => state.room.rooms);
+
+  useEffect(() => {
+    console.log(rooms);
+    
+  }, [rooms])
 
 
   const disabledDate = (current) => {

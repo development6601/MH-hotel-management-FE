@@ -8,7 +8,5 @@ const api = axios.create({
 
 export const fetchAvailableRoom = async ({ CheckInDate, CheckOutDate, guestCount }) => {
     const response = await api.post('/customer/availableRooms', {CheckInDate, CheckOutDate,guestCount});    
-    console.log(response.data);
-    
     return response.data;
 }

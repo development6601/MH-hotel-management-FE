@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { fetchAvailableRoom } from "../../services/room.api";
-import { setError, setLoading } from "./roomSlice";
+import { setError, setLoading, setRoom } from "./roomSlice";
 
 export const roomActions = () => {
 
@@ -12,9 +12,8 @@ export const roomActions = () => {
             dispatch(setLoading(true));
 
             const data = await fetchAvailableRoom({ CheckInDate, CheckOutDate, guestCount });
-            // dispatch(setRoom(data));
+            dispatch(setRoom(data.rooms));
 
-            // console.log(data);
         } catch (error) {
             dispatch(setError(error.response?.data?.message || "Fetch Available Room is Failed"));
             console.log(error.response?.data?.message || "Fetch Available Room is Failed");
