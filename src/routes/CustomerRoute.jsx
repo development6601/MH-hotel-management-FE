@@ -3,8 +3,12 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 const CustomerRoute = ({ children }) => {
-    
-    const user = useSelector((state) => state.auth.user);
+
+    const { user, loading } = useSelector((state) => state.auth);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     if (!user) {
         return <Navigate to="/login" />;

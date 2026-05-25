@@ -11,6 +11,7 @@ import Contact from '../pages/public/Contact/Contact'
 import BookNow from '../pages/customer/Book-now/BookNow';
 import MyBookings from '../pages/customer/MyBookings/MyBookings';
 import Profile from '../pages/customer/Profile/Profile';
+import BookingPage from '../pages/customer/Book-now/BookingPage';
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,14 @@ const router = createBrowserRouter([
                 element: (
                     <CustomerRoute>
                         <Profile />
+                    </CustomerRoute>
+                )
+            },
+            {
+                path: "/booking",
+                element: (
+                    <CustomerRoute>
+                        <BookingPage />
                     </CustomerRoute>
                 )
             }

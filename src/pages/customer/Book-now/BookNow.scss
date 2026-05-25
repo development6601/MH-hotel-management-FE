@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  padding-top: 7rem;
+  padding-top: 5rem;
 
   .inputContent {
     width: 100%;
@@ -124,12 +124,13 @@
 
     .room {
       width: 100%;
-      height: 350px;
+      height: 390px;
       padding: 20px;
       background-color: var(--fifth-bg-color);
       display: flex;
       // align-items: center;
       justify-content: space-between;
+      border-radius: 5px;
 
       .content {
         width: 70%;
@@ -137,11 +138,22 @@
 
 
         .imgOrBackground {
-          width: 35%;
+          width: 38%;
           height: 100%;
           background-color: var(--secondary-bg-color);
+          background-size: cover;
+          background-position: center;
           border-radius: 20px;
           position: relative;
+          padding: 0;
+
+          img {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+          }
 
           .available {
             position: absolute;
@@ -153,7 +165,44 @@
             font-size: 1.2rem;
             border: none;
             border-radius: 30px;
+          }
 
+          .leftArrow {
+            position: absolute;
+            right: 20%;
+            bottom: 5%;
+            background-color: var(--primary-bg-color);
+            padding: 2px 15px;
+            font-family: AL;
+            font-size: 2rem;
+            border: none;
+            border-radius: 50%;
+          }
+
+          .rightArrow {
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+            background-color: var(--primary-bg-color);
+            padding: 2px 15px;
+            font-family: AL;
+            font-size: 2rem;
+            border: none;
+            border-radius: 50%;
+          }
+
+          .leftArrow:hover,
+          .leftArrow:active,
+          .rightArrow:hover,
+          .rightArrow:active {
+            background-color: var(--secondary-bg-color);
+            color: var(--secondary-color);
+            cursor: pointer;
+          }
+
+          .leftArrow:active,
+          .rightArrow:active {
+            scale: 0.95;
           }
         }
 
@@ -174,19 +223,75 @@
             .type {
               display: flex;
               align-items: center;
+              gap: 0.5rem;
 
               .segment {
                 background-color: var(--sixth-bg-color);
-                padding: 12px 22px;
+                padding: 10px 15px;
                 font-family: AR;
                 font-size: 1.2rem;
                 border: none;
                 border-radius: 30px;
                 color: var(--secondary-bg-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
 
                 .icon {
+                  padding: 0;
+                  font-size: 1.4rem;
+                  color: var(--secondary-bg-color);
+                  align-self: center;
+                }
+
+                p {
+                  padding: 0;
+                  font-size: 1.3rem;
+                }
+              }
+
+              .bedType {
+                background-color: var(--primary-bg-color);
+                padding: 10px 15px;
+                border: none;
+                border-radius: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+
+                p {
+                  padding: 0;
+                  font-family: AR;
                   font-size: 1.2rem;
-                  color: black;
+                  color: var(--fourth-bg-color);
+                }
+              }
+
+              .roomDetail {
+                padding: 10px 5px;
+                font-family: AR;
+                font-size: 1.2rem;
+                border: none;
+                border-radius: 30px;
+                color: var(--secondary-bg-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+
+                .icon {
+                  padding: 0;
+                  font-size: 1.4rem;
+                  color: var(--secondary-bg-color);
+                  align-self: center;
+                }
+
+                p {
+                  padding: 0;
+                  font-size: 1.3rem;
+                  // align-self: center;
                 }
               }
 
@@ -205,22 +310,48 @@
           .middle {
             padding: 0;
             display: flex;
-            flex-direction: column;
 
-            .facilitieas {
-              padding: 0;
+            .left {
               display: flex;
+              flex-direction: column;
+              gap: 0.3rem;
+
+              .LeftIcon {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                // padding: 0;
+                font-family: AL;
+                font-size: 1.2rem;
+
+                .icon {
+                  padding: 0;
+                  font-size: 1rem;
+                  color: var(--secondary-bg-color);
+                  align-self: center;
+                }
+              }
+            }
+
+            .right {
+              display: flex;
+              flex-direction: column;
               gap: 0.5rem;
 
-              .firstIcon {
+              .RightIcon {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                // padding: 0;
                 font-family: AL;
                 font-size: 1.2rem;
-              }
 
-              .secoendIcon {
-                padding: 0;
-                font-family: AL;
-                font-size: 1.2rem;
+                .icon {
+                  padding: 0;
+                  font-size: 1rem;
+                  color: var(--secondary-bg-color);
+                  align-self: center;
+                }
               }
             }
           }
@@ -290,12 +421,28 @@
           }
         }
 
-      }
+        .discount {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
 
+          .discountIcon {
+            width: 45%;
+            font-size: 1.5rem;
+          }
+
+          p {
+            padding: 0;
+            font-size: 1.2rem;
+            font-family: AL;
+          }
+        }
+      }
     }
   }
 
-  .rooms::-webkit-scrollbar {
-    display: none;
-  }
+  // .rooms::-webkit-scrollbar {
+  //   // display: none;
+  // }
 }
