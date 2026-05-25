@@ -23,7 +23,21 @@ export const roomActions = () => {
         }
     }
 
+    const clearAvailableRooms = () => {
+        try {
+            dispatch(setLoading(true));
+
+            dispatch(setRoom([]));
+        } catch (error) {
+            dispatch(setError(error.response?.data?.message || "Fetch Available Room is Failed"));
+            console.log(error.response?.data?.message || "Fetch Available Room is Failed");
+        }
+        finally {
+            dispatch(setLoading(false));
+        }
+    }
+
     return {
-        availableRooms
+        availableRooms, clearAvailableRooms
     }
 }

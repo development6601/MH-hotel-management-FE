@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const RoomCard = ({ room, userInputs }) => {
+const RoomCard = ({ id, room, userInputs }) => {
 
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const navigate = useNavigate();
@@ -37,13 +37,12 @@ const RoomCard = ({ room, userInputs }) => {
     const handleSelectRoomBtn = (room, userInputs) => {
         console.log("Selected Room:", room);
         console.log("User Inputs:", userInputs);
-        // Here you can navigate to the booking page or perform any action with the selected room and user inputs
         navigate('/booking', { state: { room, userInputs } });
     }
 
 
     return (
-        <div className="room">
+        <div key={id} className="room">
             <div className="content">
                 <div className="imgOrBackground">
                     <img src={`http://localhost:3000${room.images[currentImageIndex]}`} alt="Room Image" />

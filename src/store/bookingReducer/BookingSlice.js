@@ -3,13 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 export const bookingSlice = createSlice({
     name: 'bookings',
     initialState: {
-        bookings: [],
+        userBookings: [],
         loading: true,
         error: null
     },
     reducers: {
-        setRoom: (state, action) => {
-            state.rooms = action.payload;
+        setBookings: (state, action) => {
+            state.userBookings = action.payload;
         },
         setLoading: (state, action) => {
             state.loading = action.payload
@@ -20,5 +20,5 @@ export const bookingSlice = createSlice({
     }
 });
 
-export const { setRoom, setLoading, setError } = bookingSlice.actions;
+export const { setBookings, setLoading, setError } = bookingSlice.actions;
 export default bookingSlice.reducer;

@@ -1,27 +1,32 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import "./BookingPage.scss";
 import { HiOutlineHome } from 'react-icons/hi';
-import { bookingActions } from '../../../store/bookingReducer/bookingActions.js';
+import { bookingActions } from '../../../store/bookingReducer/bookingActions';
+import { roomActions } from '../../../store/roomReducer/roomActions';
 
 const BookingPage = () => {
-    const location = useLocation();
 
-    if (!location.state) {
+    const location = useLocation();
+    const { confirmRoomBooking } = bookingActions();
+    const { clearAvailableRooms } = roomActions();
+
+    if (!location.state.userInputs.checkInDate) {
+        clearAvailableRooms();
         return <Navigate to="/book-now" />;
     }
 
     const totalNights = Math.ceil((new Date(location.state.userInputs.checkOutDate) - new Date(location.state.userInputs.checkInDate)) / (1000 * 60 * 60 * 24));
     const totalPrice = totalNights * location.state.room.pricePerNight;
 
-    const { confirmRoomBooking } = bookingActions();
 
     const handleConfirmBooking = async () => {
         await confirmRoomBooking({
             roomId: location.state.room._id,
             checkInDate: location.state.userInputs.checkInDate,
             checkOutDate: location.state.userInputs.checkOutDate,
-            guestCount: location.state.userInputs.guestCount
+            guestCount: location.state.userInputs.guestCount,
+            totalAmount: totalPrice
         });
     }
     return (

@@ -69,7 +69,7 @@ const BookNow = () => {
       </div>
       {rooms ? <div className="rooms">
         {rooms.map((room) => {
-          return <RoomCard key={room.id} room={room} userInputs={{ checkInDate, checkOutDate, guestCount }} />;
+          return <RoomCard key={room._id} room={room} userInputs={{ checkInDate, checkOutDate, guestCount }} />;
         })}
       </div> : <div>No Available Room</div>}
     </div>

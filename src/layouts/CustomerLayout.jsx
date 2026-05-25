@@ -3,6 +3,7 @@ import Navbar from '../pages/public/Navbar/Navbar'
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { authActions } from '../store/authReducer/authActions';
+import { bookingActions } from '../store/bookingReducer/bookingActions';
 
 const CustomerLayout = () => {
 
@@ -13,6 +14,7 @@ const CustomerLayout = () => {
   useEffect(() => {
     fetchUserData();
   }, []);
+
 
   useEffect(() => {
     console.log(currentUser);

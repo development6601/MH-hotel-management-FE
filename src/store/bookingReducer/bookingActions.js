@@ -1,22 +1,40 @@
 import { useDispatch } from "react-redux";
-import { createBooking } from "../../services/booking.api";
+import { cancelUserBooking, createBooking, myBooking } from "../../services/booking.api";
+import { setBookings, setLoading, setError } from "./BookingSlice";
 
 export const bookingActions = () => {
 
     const dispatch = useDispatch();
 
-    const confirmRoomBooking = async ({ roomId, checkInDate, checkOutDate, guestCount }) => {
+    const myBookings = async () => {
+        try {
+            dispatch(setLoading(true));
+            const data = await myBooking();
+
+            dispatch(setBookings(data.bookings));
+        } catch (error) {
+            console.error(error.response?.data?.message || "Booking Failed");
+            dispatch(setError(error.response?.data?.message || "Booking Failed"));
+        }
+        finally {
+            dispatch(setLoading(false));
+        }
+    }
+
+    const confirmRoomBooking = async ({ roomId, checkInDate, checkOutDate, guestCount, totalAmount }) => {
 
         try {
-            console.log({ roomId, checkInDate, checkOutDate, guestCount });
-            
-            const data = await createBooking({ roomId, checkInDate, checkOutDate, guestCount });
-            console.log(data);
+            const data = await createBooking({ roomId, checkInDate, checkOutDate, guestCount, totalAmount });
             return data;
         } catch (error) {
             console.error(error.response?.data?.message || "Booking Failed");
         }
     }
 
-    return { confirmRoomBooking };
+    const cancelBooking = async (bookingId) => {
+        const data = await cancelUserBooking(bookingId);
+        myBookings();
+    }
+
+    return { confirmRoomBooking, myBookings, cancelBooking };
 }
