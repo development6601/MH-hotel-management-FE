@@ -10,7 +10,7 @@ export const login = async ({ email, password }) => {
     return response.data;
 }
 
-export const register = async ({ name, email, password, role, phone, ProfilePic }) => {
+export const register = async ({ name, email, password, role, phone, gender, address, ProfilePic }) => {
 
     const formData = new FormData();
 
@@ -19,6 +19,8 @@ export const register = async ({ name, email, password, role, phone, ProfilePic 
     formData.append("password", password);
     formData.append("role", role);
     formData.append("phone", phone);
+    formData.append("gender", gender);
+    formData.append("address", address);
     formData.append("PROPIC", ProfilePic);
 
     const response = await api.post('/register', formData);

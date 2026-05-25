@@ -26,9 +26,9 @@ export const authActions = () => {
         }
     }
 
-    const registerUser = async ({ name, email, password, role, phone, ProfilePic }) => {
+    const registerUser = async (user) => {
         try {
-            const data = await register({ name, email, password, role, phone, ProfilePic });
+            const data = await register(user);
             return data;
 
         } catch (error) {

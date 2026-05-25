@@ -20,6 +20,10 @@ export const validateRegister = Yup.object({
     password: Yup.string()
         .min(8, 'Password must be at least 8 characters')
         .required('Password is required'),
+    gender: Yup.string()
+        .required('Gender is required'),
+    address: Yup.string()
+        .required('Address is required'),
     phone: Yup.number()
         .typeError("That doesn't look like a phone number")
         .positive("A phone number can't start with a minus")

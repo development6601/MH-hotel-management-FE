@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useFormik } from 'formik';
+import { Field, useFormik } from 'formik';
 import { validateRegister } from '../../../../utils/validate';
 import { ToastContainer, toast } from 'react-toastify'
 import "../Register/register.scss"
@@ -21,6 +21,8 @@ const Register = () => {
       name: '',
       email: '',
       password: '',
+      gender: '',
+      address: '',
       phone: '',
       profilePic: '',
     },
@@ -31,12 +33,14 @@ const Register = () => {
         name: values.name,
         email: values.email,
         password: values.password,
+        gender: values.gender,
+        address: values.address,
         role: "CUSTOMER",
         phone: values.phone,
         ProfilePic: values.profilePic
       }
 
-      const data = await registerUser({ name: values.name, email: values.email, password: values.password, role: "CUSTOMER", phone: values.phone, ProfilePic: fileInputRef.current.files[0] });
+      const data = await registerUser(user);
       if (data.user) {
         toast.success('User Register SuccessFully');
         navigate("/login");
@@ -83,57 +87,75 @@ const Register = () => {
                   <div className="errorDiv">{formik.errors.name}</div>
                 ) : null}
               </div>
-            </div>
-            <div className="inputContent">
-              <label htmlFor="email">Email Address</label>
-              <div className="inputBlock">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.email}
-                />
-                {formik.touched.email && formik.errors.email ? (
-                  <div className="errorDiv">{formik.errors.email}</div>
-                ) : null}
-              </div>
-            </div>
-            {/* <div className="MultipleInputContent"> */}
-            <div className="inputContent">
-              <label htmlFor="password">Password</label>
-              <div className="inputBlock">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                />
-                {formik.touched.password && formik.errors.password ? (
-                  <div className="errorDiv">{formik.errors.password}</div>
-                ) : null}
-              </div>
-            </div>
-            {/* <div className="inputContent">
-                <label htmlFor="role">Role</label>
-                <div className="inputBlock">
-                  <input
-                    id="role"
-                    name="role"
-                    type="text"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.role}
-                  />
-                  {formik.touched.role && formik.errors.role ? (
-                    <div className="errorDiv">{formik.errors.role}</div>
-                  ) : null}
+              <div className="MultipleInputContent">
+                <div className="inputContent">
+                  <label htmlFor="email">Email Address</label>
+                  <div className="inputBlock">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.email}
+                    />
+                    {formik.touched.email && formik.errors.email ? (
+                      <div className="errorDiv">{formik.errors.email}</div>
+                    ) : null}
+                  </div>
                 </div>
-              </div> */}
-            {/* </div> */}
+                <div className="inputContent">
+                  <label htmlFor="password">Password</label>
+                  <div className="inputBlock">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.password}
+                    />
+                    {formik.touched.password && formik.errors.password ? (
+                      <div className="errorDiv">{formik.errors.password}</div>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+              <div className="MultipleInputContent">
+                <div className="inputContent">
+                  <label htmlFor="role">Gender</label>
+                  <div className="inputBlock">
+                    <input
+                      id="gender"
+                      name="gender"
+                      type="text"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.gender}
+                    />
+                    {formik.touched.gender && formik.errors.gender ? (
+                      <div className="errorDiv">{formik.errors.gender}</div>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="inputContent">
+                  <label htmlFor="name">Address</label>
+                  <div className="inputBlock">
+                    <input
+                      id="address"
+                      name="address"
+                      type="address"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.address}
+                    />
+                    {formik.touched.address && formik.errors.address ? (
+                      <div className="errorDiv">{formik.errors.address}</div>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="MultipleInputContent">
               <div className="mobileInput">
                 <label htmlFor="phone">Mobile  No.</label>

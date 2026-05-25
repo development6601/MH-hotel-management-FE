@@ -66,6 +66,54 @@ const BookingPage = () => {
                     <button className="confirmBtn" onClick={handleConfirmBooking}>Confirm Booking</button>
                 </div>
             </div>
+
+            {/* <div className="bookingDetails">
+                <div className="left">
+                    <div className='topImage'>
+                        <img src={`http://localhost:3000${location.state.room.images[0]}`} alt="" srcset="" />
+                    </div>
+                    <div className="buttoImages">
+                        <div className="leftImage">
+                            <img src={`http://localhost:3000${location.state.room.images[1]}`} alt="" srcset="" />
+                        </div>
+                        <div className="rightImage">
+                            <img src={`http://localhost:3000${location.state.room.images[2]}`} alt="" srcset="" />
+                        </div>
+                    </div>
+                </div>
+                <div className="right">
+                    <h4 className="title">{location.state.room.title}</h4>
+                    <div className="dates">
+                        <div className="checkIn">
+                            <p>Check-In</p>
+                            <h5>{location.state.userInputs.checkInDate}</h5>
+
+                        </div>
+                        <div className="checkOut">
+                            <p>Check-Out</p>
+                            <h5>{location.state.userInputs.checkOutDate}</h5>
+                        </div>
+                        <div className="guestCount">
+                            <p>Number of Guest</p>
+                            <h5>{location.state.userInputs.guestCount}</h5>
+                        </div>
+                    </div>
+                    <div className="roomDetails">
+                        <div className="roomNumber">
+                            <p>Room Number</p>
+                            <h5>{location.state.room.roomNumber}</h5>
+                        </div>
+                        <div className="roomType">
+                            <p>Room Type</p>
+                            <h5>{location.state.room.roomType}</h5>
+                        </div>
+                        <div className="bedType">
+                            <p>Bed Type</p>
+                            <h5>{location.state.room.bedCount}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div> */}
         </div>
     )
 }
