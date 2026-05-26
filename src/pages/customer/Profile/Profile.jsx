@@ -1,6 +1,9 @@
 import { useSelector } from 'react-redux'
 import './Profile.scss'
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { authActions } from '../../../store/authReducer/authActions';
+import { useFormik } from 'formik';
+import { validateUpdateProfile } from '../../../utils/validate';
 const Profile = () => {
 
   const currentUser = useSelector((state) => state.auth.user);
@@ -26,6 +29,50 @@ const Profile = () => {
 
   const [activeComponent, setActiveComponent] = useState("PERSONALINFO");
 
+
+  const { updateUserProfile } = authActions();
+
+  const formik = useFormik({
+    initialValues: {
+      name: `${currentUser.name}`,
+      email: `${currentUser.email}`,
+      gender: `${currentUser.gender}`,
+      phone: `${currentUser.phone}`,
+      address: `${currentUser.address}`,
+    },
+    validationSchema: validateUpdateProfile,
+    onSubmit: async values => {
+
+      const user = {
+        name: values.name,
+        email: values.email,
+        gender: values.gender,
+        phone: values.phone,
+        address: values.address,
+      }
+
+      const data = await updateUserProfile(user);
+      if (data.user) {
+        toast.success('User Register SuccessFully');
+        navigate("/login");
+      }
+      else {
+        toast.error('Something went Wrong! Try Again');
+      }
+    }
+  });
+
+  const activeForm = useRef();
+  const handlePersonalInfoClick = () => {
+    setActiveComponent('PERSONALINFO');
+    activeForm.current.focus();
+  }
+
+  const [imageUpdatePopUp, setImageUpdatePopUp] = useState(false);
+  const hanldeImageUpdate = () => {
+    setImageUpdatePopUp(true);
+  }
+
   return (
     <div className="profile">
       <div className="sideBar">
@@ -42,7 +89,7 @@ const Profile = () => {
         <div className='accountPart'>
           <p>ACCOUNT</p>
           <div className="menus">
-            <div className='menu' onClick={(() => { setActiveComponent('PERSONALINFO') })}>
+            <div className='menu' onClick={handlePersonalInfoClick}>
               <i className="ri-user-3-fill icon"></i>
               <p>Personal Info</p>
             </div>
@@ -56,16 +103,15 @@ const Profile = () => {
             </div>
           </div>
         </div>
-
       </div>
       <div className="mainContent">
         <div className="userDashBoard">
           <div className="themeBackground"></div>
           <div className="profilePic">
-            <div className='UserImage'>
+            <div className='UserImage' onClick={hanldeImageUpdate}>
               <img src={`http://localhost:3000${currentUser.ProfilePic}`} alt="" />
             </div>
-            <button className='editProfileButton' type='button'>Edit Profile</button>
+            <button className='editProfileButton' type='button' onClick={handlePersonalInfoClick} ref={activeForm}>Edit Profile</button>
           </div>
           <div className="userContent">
             <div className="UserDetails">
@@ -114,9 +160,106 @@ const Profile = () => {
           </div>
         </div>
         <div className="slider">
-          <p>Personal Info</p>
-          <p>Security</p>
+          <p onClick={(() => { setActiveComponent('PERSONALINFO') })}>Personal Info</p>
+          <p onClick={(() => { setActiveComponent('SECURITY') })}>Security</p>
         </div>
+        {activeComponent === "PERSONALINFO" ? <div className='personalInfo'>
+          <div className="title">
+            <p>Personal Info</p>
+            <button className='editProfileButton' onClick={handlePersonalInfoClick} ref={activeForm} type='button'>Edit Profile</button>
+          </div>
+          <div className="line"></div>
+          <div className="updationForm">
+            <div className="MultipleInputContent">
+              <div className="inputContent">
+                <label htmlFor="name">Name</label>
+                <div className="inputBlock">
+                  <input
+                    id="name"
+                    name="name"
+                    type="name"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.name}
+                    ref={activeForm}
+                  />
+                  {formik.touched.name && formik.errors.name ? (
+                    <div className="errorDiv">{formik.errors.name}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div className="inputContent">
+                <label htmlFor="password">Email Address</label>
+                <div className="inputBlock">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
+                  />
+                  {formik.touched.email && formik.errors.email ? (
+                    <div className="errorDiv">{formik.errors.email}</div>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+            <div className="MultipleInputContent">
+              <div className="inputContent">
+                <label htmlFor="name">Gender</label>
+                <div className="inputBlock">
+                  <input
+                    id="gender"
+                    name="gender"
+                    type="gender"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.gender}
+                  />
+                  {formik.touched.gender && formik.errors.gender ? (
+                    <div className="errorDiv">{formik.errors.gender}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div className="inputContent">
+                <label htmlFor="password">phone</label>
+                <div className="inputBlock">
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="phone"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.phone}
+                  />
+                  {formik.touched.phone && formik.errors.phone ? (
+                    <div className="errorDiv">{formik.errors.phone}</div>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+            <div className="MultipleInputContent">
+              <div className="inputContent">
+                <label htmlFor="password">Address</label>
+                <div className="inputBlock">
+                  <input
+                    id="address"
+                    name="address"
+                    type="address"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.address}
+                  />
+                  {formik.touched.address && formik.errors.address ? (
+                    <div className="errorDiv">{formik.errors.address}</div>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+              <button className='savebtn' onClick={formik.handleSubmit} type='submit'>Save</button>
+          </div>
+        </div> : ''}
       </div>
     </div>
   )
