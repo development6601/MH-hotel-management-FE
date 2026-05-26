@@ -33,7 +33,7 @@ export const bookingActions = () => {
 
     const cancelBooking = async (bookingId) => {
         const data = await cancelUserBooking(bookingId);
-        myBookings();
+        await myBookings();
     }
 
     return { confirmRoomBooking, myBookings, cancelBooking };

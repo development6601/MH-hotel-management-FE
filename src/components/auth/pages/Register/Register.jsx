@@ -175,16 +175,23 @@ const Register = () => {
               </div>
               <div className="fileInput">
                 <div className="inputContent">
-                  <Button className='FileInputButton' color='default' variant="dashed" onClick={handleClick}>{formik.values.profilePic ? formik.values.profilePic.slice(0, 15) : "Select Profile Pic"}</Button>
+                  <Button className='FileInputButton' color='default' variant="dashed" onClick={handleClick}>{formik.values.profilePic ? formik.values.profilePic?.name?.slice(0, 15) : "Select Profile Pic"}</Button>
                   <div className="fileinputBlock">
                     <input
                       id="profilePicphone"
                       name="profilePic"
                       type="file"
                       ref={fileInputRef}
-                      onChange={formik.handleChange}
+
+                      onChange={(e) => {
+
+                        formik.setFieldValue(
+                          "profilePic",
+                          e.currentTarget.files[0]
+                        );
+                      }}
+
                       onBlur={formik.handleBlur}
-                      value={formik.values.profilePic}
                     />
                     {formik.touched.profilePic && formik.errors.profilePic ? (
                       <div className="errorDiv">{formik.errors.profilePic}</div>

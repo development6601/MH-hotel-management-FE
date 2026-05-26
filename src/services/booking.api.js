@@ -22,6 +22,6 @@ export const myBooking = async () => {
 
 export const cancelUserBooking = async (bookingId) => {
     
-    const response = await api.get('/customer/cancelBooking/' + bookingId);
+    const response = await api.patch('/customer/cancelBooking/' + bookingId);
     return response.data;
 }

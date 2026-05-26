@@ -19,3 +19,4 @@ const Profile = () => {
 export default Profile
 
 // https://www.figma.com/community/file/1592445546300627840/hotelify-hotel-management-admin-dashboard-ui-design-figma
+// https://drive.google.com/drive/folders/17W7dAmVI7DvmfwQbSI-7tv3OHU50bZvu?usp=sharing
